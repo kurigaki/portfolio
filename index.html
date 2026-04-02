@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenji Kurigaki | Software Engineer & QA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-main: #0c0c0c;
+  --bg-sub: #141414;
+  --bg-light: #f0f0f0;
+  --bg-card: #1a1a1a;
+  --text-light: #ede8df;
+  --text-dark: #1a1a1a;
+  --text-muted: #7a7570;
+  --accent: #3a8fd4;
+  --accent-sub: #5bb8a9;
+  --accent-warm: #e07a30;
+  --border-subtle: rgba(255,255,255,0.06);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  font-feature-settings: "palt";
+  letter-spacing: 0.06em;
+  background: var(--bg-main);
+  color: var(--text-light);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+.en {
+  font-family: 'Inter', sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  padding: 1.2rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: background 0.4s, backdrop-filter 0.4s;
+}
+.nav.scrolled {
+  background: rgba(12,12,12,0.85);
+  backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex; gap: 2rem;
+}
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1100;
+}
+.hamburger span {
+  display: block; width: 24px; height: 1.5px;
+  background: var(--text-light);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+
+.mobile-menu {
+  display: none;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+  background: rgba(12,12,12,0.97);
+  flex-direction: column; justify-content: center; align-items: center;
+  gap: 2rem; z-index: 1050;
+}
+.mobile-menu.active { display: flex; }
+.mobile-menu a {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+/* ===== HERO ===== */
+.hero {
+  height: 100vh;
+  display: flex; align-items: center;
+  padding: 0 8vw;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg-svg {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+}
+.hero-content {
+  position: relative; z-index: 1;
+  max-width: 900px;
+}
+.hero-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  opacity: 0; transform: translateY(20px);
+}
+.hero-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.5rem, 11vw, 9rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.hero-name .first { color: var(--accent); display: block; }
+.hero-name .last { display: block; }
+.hero-catch {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  opacity: 0; transform: translateY(20px);
+}
+.hero-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  opacity: 0; transform: translateY(20px);
+}
+.hero-btn {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.9rem 2.2rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  transition: background 0.3s, color 0.3s;
+  opacity: 0; transform: translateY(20px);
+}
+.hero-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ===== SECTIONS COMMON ===== */
+.section {
+  padding: 7rem 8vw;
+}
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 2rem;
+}
+
+/* ===== WORKS ===== */
+.works { background: var(--bg-sub); }
+
+.works-grid {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 1.5rem;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  cursor: grab;
+}
+.works-grid:active { cursor: grabbing; }
+.works-grid::-webkit-scrollbar { display: none; }
+
+.work-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s, opacity 0.7s ease;
+  opacity: 0; transform: translateY(30px);
+  min-width: 380px;
+  max-width: 420px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+.work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(58,143,212,0.1);
+}
+.work-card.visible {
+  transform: translateY(0);
+}
+.work-card.visible:hover {
+  transform: translateY(-4px);
+}
+
+.work-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.work-thumb-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s;
+}
+.work-card:hover .work-thumb-inner {
+  transform: scale(1.03);
+}
+
+.work-body {
+  padding: 1.5rem 1.8rem 1.8rem;
+}
+.work-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.work-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.work-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+.work-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+.work-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.work-tech span {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.6rem;
+  background: rgba(58,143,212,0.1);
+  color: var(--accent);
+  border-radius: 3px;
+}
+.work-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.work-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.3s;
+}
+.work-links a:hover { color: var(--accent-sub); }
+.work-links svg { width: 14px; height: 14px; }
+
+/* ===== ABOUT ===== */
+.about {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  position: relative;
+  overflow: hidden;
+}
+.about-initial {
+  position: absolute;
+  font-family: 'Inter', sans-serif;
+  font-size: 18rem;
+  font-weight: 800;
+  color: rgba(0,0,0,0.04);
+  top: -2rem; left: -1rem;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.about-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.about-text .section-label { color: var(--accent); }
+.about-text p {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+.about-timeline {
+  margin-top: 2rem;
+}
+.about-timeline-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.about-timeline-item .year {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--accent);
+  min-width: 4rem;
+}
+.about-timeline-item .desc {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.highlight-card {
+  background: #fff;
+  padding: 1.5rem 1.8rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.highlight-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.2;
+}
+.highlight-label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.3rem;
+}
+
+/* ===== SKILLS ===== */
+.skills { background: var(--bg-sub); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 1rem;
+}
+.skill-card {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  transition: border-color 0.3s, transform 0.7s ease, opacity 0.7s ease;
+  opacity: 0; transform: translateY(30px);
+}
+.skill-card:hover {
+  border-color: rgba(58,143,212,0.3);
+  transform: translateY(-2px);
+}
+.skill-icon {
+  width: 48px; height: 48px;
+  margin: 0 auto 1.2rem;
+}
+.skill-icon svg {
+  width: 100%; height: 100%;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 1.2;
+  transition: filter 0.3s;
+}
+.skill-card:hover .skill-icon svg {
+  filter: drop-shadow(0 0 8px rgba(58,143,212,0.5));
+}
+.skill-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.skill-en {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.skill-detail {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ===== CERTIFICATIONS ===== */
+.certs { background: var(--bg-main); }
+.certs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  opacity: 0; transform: translateY(20px);
+  transition: border-color 0.3s, opacity 0.7s ease, transform 0.7s ease;
+}
+.cert-item:hover { border-color: rgba(58,143,212,0.3); }
+.cert-year {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 3.5rem;
+}
+.cert-name {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+/* ===== CONTACT ===== */
+.contact {
+  background: var(--bg-main);
+  text-align: center;
+  padding: 8rem 8vw;
+}
+.contact-heading {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+.contact-heading span { display: block; }
+.contact-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+.contact-email {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+.contact-email::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--accent);
+  transition: width 0.4s;
+}
+.contact-email:hover::after { width: 100%; }
+
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.contact-icons a {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.contact-icons a:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.contact-icons svg {
+  width: 18px; height: 18px;
+  stroke: var(--text-muted);
+  fill: none;
+  stroke-width: 1.5;
+  transition: stroke 0.3s;
+}
+.contact-icons a:hover svg { stroke: var(--accent); }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #0a0a0a;
+  padding: 2rem 8vw;
+  text-align: center;
+  position: relative;
+}
+.footer::before {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent-sub), transparent);
+}
+.footer p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible,
+.work-card.visible,
+.skill-card.visible,
+.cert-item.visible,
+.about-timeline-item.visible,
+.highlight-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .section { padding: 5rem 6vw; }
+  .hero { padding: 0 6vw; }
+  .work-card { min-width: 300px; max-width: 340px; }
+  .about-content { grid-template-columns: 1fr; gap: 2rem; }
+  .about-initial { font-size: 10rem; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact { padding: 5rem 6vw; }
+}
+
+@media (max-width: 480px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .nav { padding: 1rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-logo en">KENJI KURIGAKI</div>
+  <div class="nav-links">
+    <a href="#works">Works</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#works" onclick="closeMobile()">Works</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-bg-svg" id="particleSvg"></svg>
+  <div class="hero-content">
+    <p class="hero-label en">Software Engineer & QA &mdash; Job Seeking</p>
+    <h1 class="hero-name en">
+      <span class="first">Kenji</span>
+      <span class="last">Kurigaki</span>
+    </h1>
+    <p class="hero-catch">品質を、つくり込む。</p>
+    <p class="hero-sub">開発スピードと品質担保を両立し、安心して使えるプロダクトを実現するエンジニア</p>
+    <a href="#works" class="hero-btn en">Works &rarr;</a>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section class="section works" id="works">
+  <div class="section-label en fade-in">Works</div>
+  <h2 class="section-title fade-in">Projects</h2>
+
+  <div class="works-grid">
+    <!-- Project 1: WORD DUNGEON -->
+    <div class="work-card">
+      <div class="work-thumb" style="background: linear-gradient(135deg, #1a2a3a, #0d1b2a);">
+        <div class="work-thumb-inner">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <rect x="10" y="14" width="60" height="52" rx="4" stroke="#3a8fd4" stroke-width="1.5"/>
+            <path d="M26 34h28M26 42h20M26 50h24" stroke="#5bb8a9" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="58" cy="26" r="6" stroke="#e07a30" stroke-width="1.2"/>
+            <path d="M56 26l2 2 3-4" stroke="#e07a30" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="work-body">
+        <div class="work-num en">01</div>
+        <h3 class="work-name">WORD DUNGEON</h3>
+        <p class="work-tag en">English Learning App</p>
+        <p class="work-desc">ユーザーの継続利用を意識した英語学習アプリ。テスト自動化を導入し、品質担保と開発効率の両立を実現。</p>
+        <div class="work-tech">
+          <span class="en">Next.js</span>
+          <span class="en">TypeScript</span>
+          <span class="en">Supabase</span>
+          <span class="en">Vitest</span>
+          <span class="en">Puppeteer</span>
+        </div>
+        <div class="work-links">
+          <a href="https://kurigaki-english-learning-app.vercel.app/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span class="en">Live</span>
+          </a>
+          <a href="https://github.com/kurigaki/kurigaki-english-learning-app" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            <span class="en">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: AI Company Multi-Agent -->
+    <div class="work-card">
+      <div class="work-thumb" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+        <div class="work-thumb-inner">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="28" r="10" stroke="#3a8fd4" stroke-width="1.5"/>
+            <circle cx="22" cy="52" r="8" stroke="#5bb8a9" stroke-width="1.2"/>
+            <circle cx="58" cy="52" r="8" stroke="#e07a30" stroke-width="1.2"/>
+            <line x1="34" y1="36" x2="26" y2="46" stroke="#3a8fd4" stroke-width="0.8" opacity="0.5"/>
+            <line x1="46" y1="36" x2="54" y2="46" stroke="#3a8fd4" stroke-width="0.8" opacity="0.5"/>
+            <line x1="30" y1="52" x2="50" y2="52" stroke="#3a8fd4" stroke-width="0.8" opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="work-body">
+        <div class="work-num en">02</div>
+        <h3 class="work-name">AI Multi-Agent System</h3>
+        <p class="work-tag en">AI Company &mdash; Multi-Agent Development</p>
+        <p class="work-desc">レビュー工程にAIエージェントを導入。役割ごとにエージェントを分離し、複数視点によるレビューで不具合検出精度の向上と仕様漏れ削減を実現。</p>
+        <div class="work-tech">
+          <span class="en">AI Agent</span>
+          <span class="en">QA</span>
+          <span class="en">UX Review</span>
+          <span class="en">Performance</span>
+        </div>
+        <div class="work-links">
+          <a href="https://github.com/kurigaki" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            <span class="en">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: Clinic Site -->
+    <div class="work-card">
+      <div class="work-thumb" style="background: linear-gradient(135deg, #1a2e1a, #0d2818);">
+        <div class="work-thumb-inner">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <rect x="15" y="20" width="50" height="40" rx="4" stroke="#5bb8a9" stroke-width="1.5"/>
+            <path d="M40 30v20M30 40h20" stroke="#3a8fd4" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="work-body">
+        <div class="work-num en">03</div>
+        <h3 class="work-name">Clinic Website</h3>
+        <p class="work-tag en">Medical Web Design</p>
+        <p class="work-desc">医療機関向けWebサイトを個人開発。AIを活用したコンテンツ生成と、患者導線を意識したUI/UX設計を実施。</p>
+        <div class="work-tech">
+          <span class="en">HTML</span>
+          <span class="en">CSS</span>
+          <span class="en">JavaScript</span>
+          <span class="en">AI</span>
+        </div>
+        <div class="work-links">
+          <a href="https://clinic-site-steel.vercel.app/index.html" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span class="en">Live</span>
+          </a>
+          <a href="https://github.com/kurigaki/clinic-site" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            <span class="en">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4: GAS News Bot -->
+    <div class="work-card">
+      <div class="work-thumb" style="background: linear-gradient(135deg, #2a1a2e, #1e0d28);">
+        <div class="work-thumb-inner">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <rect x="18" y="16" width="44" height="48" rx="4" stroke="#e07a30" stroke-width="1.5"/>
+            <path d="M28 28h24M28 36h18M28 44h20" stroke="#3a8fd4" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M50 50l8 8" stroke="#5bb8a9" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="48" cy="48" r="5" stroke="#5bb8a9" stroke-width="1.2"/>
+          </svg>
+        </div>
+      </div>
+      <div class="work-body">
+        <div class="work-num en">04</div>
+        <h3 class="work-name">GAS News Bot</h3>
+        <p class="work-tag en">Discord Automation</p>
+        <p class="work-desc">ニュース自動取得・Discord投稿Botを開発。5種類のニュースを毎日定時投稿し、コミュニティの情報共有とアクティブ率向上に貢献。</p>
+        <div class="work-tech">
+          <span class="en">Google Apps Script</span>
+          <span class="en">Discord API</span>
+          <span class="en">RSS</span>
+        </div>
+        <div class="work-links">
+          <a href="https://github.com/kurigaki/gas-news-bot" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            <span class="en">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="about-initial en">K</div>
+  <div class="about-content">
+    <div class="about-text">
+      <div class="section-label en fade-in">About</div>
+      <h2 class="section-title fade-in" style="color: var(--text-dark);">速さと品質を、<br>両立させる人</h2>
+      <p class="fade-in">QAエンジニアとして自社SaaS開発に携わり、探索的テストでチーム平均の約6倍の不具合を検出。時短勤務下でも稼働時間あたり約2倍の生産性を実現してきました。</p>
+      <p class="fade-in">工業高校卒業後、音楽活動でYAMAHAグランプリ受賞やワンマンライブ開催を経験。その後エンジニアへ転身し、サイバー大学でAI・データサイエンスを専攻（GPA 3.9）。多彩なバックグラウンドを武器に、ユーザー視点と技術力の両面から品質にアプローチします。</p>
+
+      <div class="about-timeline">
+        <div class="about-timeline-item">
+          <span class="year en">2012</span>
+          <span class="desc">芝浦シヤリング入社 / 音楽活動開始</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2013</span>
+          <span class="desc">YAMAHA Music Revolution グランプリ受賞</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2021</span>
+          <span class="desc">テックキャンプ修了、エンジニアへ転身</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2022</span>
+          <span class="desc">インターパーク入社 / SaaS開発・QA</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2023</span>
+          <span class="desc">サイバー大学入学 / AWS認定取得</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2024</span>
+          <span class="desc">基本情報・情報セキュリティマネジメント取得</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2026</span>
+          <span class="desc">サイバー大学卒業見込み / 転職活動中</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-highlights-wrap">
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="highlight-num en">6x</div>
+          <div class="highlight-label">チーム平均比 不具合検出数</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-num en">2x</div>
+          <div class="highlight-label">稼働時間あたりの生産性</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-num en">3.9</div>
+          <div class="highlight-label">GPA（AI・データサイエンス専攻）</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-num en">8+</div>
+          <div class="highlight-label">IT関連資格取得数</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section skills" id="skills">
+  <div class="section-label en fade-in">Skills</div>
+  <h2 class="section-title fade-in">Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">
+        <svg viewBox="0 0 48 48">
+          <rect x="6" y="8" width="36" height="28" rx="2"/>
+          <line x1="6" y1="40" x2="42" y2="40"/>
+          <path d="M14 18l6 6-6 6M24 30h10"/>
+        </svg>
+      </div>
+      <div class="skill-name">バックエンド</div>
+      <div class="skill-en">Backend</div>
+      <div class="skill-detail en">Perl / PHP / Ruby<br>MySQL / Linux</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">
+        <svg viewBox="0 0 48 48">
+          <path d="M8 12h32v24H8z" stroke-linejoin="round"/>
+          <path d="M14 20h8v8h-8z"/>
+          <line x1="26" y1="20" x2="36" y2="20"/>
+          <line x1="26" y1="24" x2="34" y2="24"/>
+          <line x1="26" y1="28" x2="32" y2="28"/>
+        </svg>
+      </div>
+      <div class="skill-name">フロントエンド</div>
+      <div class="skill-en">Frontend</div>
+      <div class="skill-detail en">Next.js / TypeScript<br>HTML / CSS / JavaScript</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">
+        <svg viewBox="0 0 48 48">
+          <circle cx="24" cy="20" r="8"/>
+          <path d="M10 40c0-8 6-14 14-14s14 6 14 14"/>
+          <path d="M30 16l4-4M34 12l-2 6 6-2"/>
+        </svg>
+      </div>
+      <div class="skill-name">QA・テスト</div>
+      <div class="skill-en">Quality Assurance</div>
+      <div class="skill-detail">テスト設計 / 探索的テスト<br>不具合解析 / 品質改善</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">
+        <svg viewBox="0 0 48 48">
+          <path d="M24 8v8l6 4"/>
+          <circle cx="24" cy="24" r="16"/>
+          <circle cx="14" cy="34" r="4"/>
+          <circle cx="34" cy="34" r="4"/>
+          <line x1="18" y1="34" x2="30" y2="34"/>
+        </svg>
+      </div>
+      <div class="skill-name">AI・クラウド</div>
+      <div class="skill-en">AI & Cloud</div>
+      <div class="skill-detail en">AI Agent / Python<br>AWS / Docker / Git</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section certs" id="certs">
+  <div class="section-label en fade-in">Certifications</div>
+  <h2 class="section-title fade-in">Qualifications</h2>
+  <div class="certs-list">
+    <div class="cert-item">
+      <span class="cert-year en">2024</span>
+      <span class="cert-name">情報セキュリティマネジメント試験</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year en">2024</span>
+      <span class="cert-name">基本情報技術者試験</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year en">2024</span>
+      <span class="cert-name en">Google AI Essentials</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year en">2024</span>
+      <span class="cert-name en">Google Cybersecurity Professional</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year en">2023</span>
+      <span class="cert-name en">AWS Certified Cloud Practitioner</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year en">2021</span>
+      <span class="cert-name">ITパスポート</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year en">2013</span>
+      <span class="cert-name">クレーン・デリック運転士免許</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year en">2011</span>
+      <span class="cert-name">工事担任者DD3種</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <h2 class="contact-heading en fade-in">
+    <span>Let's Work</span>
+    <span>Together</span>
+  </h2>
+  <p class="contact-sub fade-in">お仕事のご相談、お気軽にご連絡ください。</p>
+  <a href="mailto:kenji.kurigaki@gmail.com" class="contact-email en fade-in">kenji.kurigaki@gmail.com</a>
+  <div class="contact-icons fade-in">
+    <a href="https://github.com/kurigaki" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+    </a>
+    <a href="https://www.credly.com/users/username.e9f9855a/badges#credly" target="_blank" rel="noopener" aria-label="Credly">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </a>
+    <a href="https://wallet.openbadge.net/public/user/a674c84f-fbd7-460d-a47d-2c5d471a62d8" target="_blank" rel="noopener" aria-label="OpenBadge">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8 13l-2 9 6-3 6 3-2-9"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="en">&copy; 2026 Kenji Kurigaki. All Rights Reserved.</p>
+</footer>
+
+<script>
+// ===== NAV SCROLL =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ===== HAMBURGER =====
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+});
+function closeMobile() {
+  hamburger.classList.remove('active');
+  mobileMenu.classList.remove('active');
+}
+
+// ===== HERO STAGGER =====
+document.addEventListener('DOMContentLoaded', () => {
+  const heroEls = document.querySelectorAll('.hero-label, .hero-name .first, .hero-name .last, .hero-catch, .hero-sub, .hero-btn');
+  heroEls.forEach((el, i) => {
+    setTimeout(() => {
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 200 + i * 150);
+  });
+  // Init hero name lines
+  document.querySelectorAll('.hero-name .first, .hero-name .last').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+  });
+});
+
+// ===== INTERSECTION OBSERVER =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in, .work-card, .about-timeline-item, .highlight-card, .skill-card, .cert-item').forEach(el => {
+  observer.observe(el);
+});
+
+// ===== WORKS HORIZONTAL SCROLL (WHEEL + DRAG) =====
+(() => {
+  const container = document.querySelector('.works-grid');
+  if (!container) return;
+
+  // Mouse wheel → horizontal scroll
+  container.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      container.scrollLeft += e.deltaY;
+    }
+  }, { passive: false });
+
+  // Drag to scroll
+  let isDown = false, startX, scrollLeft;
+  container.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - container.offsetLeft;
+    scrollLeft = container.scrollLeft;
+  });
+  container.addEventListener('mouseleave', () => { isDown = false; });
+  container.addEventListener('mouseup', () => { isDown = false; });
+  container.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    container.scrollLeft = scrollLeft - (x - startX);
+  });
+})();
+
+// ===== PARTICLE SVG =====
+(() => {
+  const svg = document.getElementById('particleSvg');
+  const ns = 'http://www.w3.org/2000/svg';
+  const W = () => window.innerWidth;
+  const H = () => window.innerHeight;
+  const PARTICLE_COUNT = 25;
+  const CONNECT_DIST = 150;
+  const colors = ['#3a8fd4', '#5bb8a9', '#e07a30'];
+  let mouse = { x: -1000, y: -1000 };
+
+  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+  const particles = [];
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const c = document.createElementNS(ns, 'circle');
+    const r = 1 + Math.random() * 1.5;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    c.setAttribute('r', r);
+    c.setAttribute('fill', color);
+    c.setAttribute('opacity', 0.3 + Math.random() * 0.2);
+    svg.appendChild(c);
+    particles.push({
+      el: c,
+      x: Math.random() * W(),
+      y: Math.random() * H(),
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+    });
+  }
+
+  const lines = [];
+  for (let i = 0; i < 40; i++) {
+    const l = document.createElementNS(ns, 'line');
+    l.setAttribute('stroke', '#3a8fd4');
+    l.setAttribute('stroke-width', '0.5');
+    l.setAttribute('opacity', '0');
+    svg.appendChild(l);
+    lines.push(l);
+  }
+
+  function animate() {
+    const w = W(), h = H();
+    particles.forEach(p => {
+      // Mouse attraction
+      const dx = mouse.x - p.x;
+      const dy = mouse.y - p.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 200 && dist > 0) {
+        p.vx += dx / dist * 0.02;
+        p.vy += dy / dist * 0.02;
+      }
+      p.x += p.vx;
+      p.y += p.vy;
+      // Speed limit
+      const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+      if (speed > 0.8) { p.vx *= 0.95; p.vy *= 0.95; }
+      // Bounds
+      if (p.x < 0) { p.x = 0; p.vx *= -1; }
+      if (p.x > w) { p.x = w; p.vx *= -1; }
+      if (p.y < 0) { p.y = 0; p.vy *= -1; }
+      if (p.y > h) { p.y = h; p.vy *= -1; }
+      p.el.setAttribute('cx', p.x);
+      p.el.setAttribute('cy', p.y);
+    });
+
+    let li = 0;
+    for (let i = 0; i < particles.length && li < lines.length; i++) {
+      for (let j = i + 1; j < particles.length && li < lines.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < CONNECT_DIST) {
+          const l = lines[li++];
+          l.setAttribute('x1', particles[i].x);
+          l.setAttribute('y1', particles[i].y);
+          l.setAttribute('x2', particles[j].x);
+          l.setAttribute('y2', particles[j].y);
+          l.setAttribute('opacity', (1 - d / CONNECT_DIST) * 0.12);
+        }
+      }
+    }
+    for (; li < lines.length; li++) {
+      lines[li].setAttribute('opacity', '0');
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+
+</body>
+</html>
