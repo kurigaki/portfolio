@@ -173,6 +173,23 @@ a { color: inherit; text-decoration: none; }
   border-color: var(--border-accent);
   color: var(--accent);
 }
+.hero-remote {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--accent-green);
+  margin-bottom: 2.5rem;
+  opacity: 0; transform: translateY(20px);
+}
+.hero-remote .remote-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.5);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
 
 /* ===== SECTIONS COMMON ===== */
 .section { padding: 6rem 8vw; max-width: 1200px; margin: 0 auto; }
@@ -543,6 +560,7 @@ a { color: inherit; text-decoration: none; }
     <div class="hero-tag en">QA Engineer &mdash; Quality Specialist</div>
     <h1 class="hero-copy">不具合検出数<span class="num en">6</span>倍。<br>品質で、プロダクトを守る。</h1>
     <p class="hero-sub-copy">AI × QA × 開発。探索的テストと開発経験を武器に、品質を"つくれる"エンジニア。</p>
+    <div class="hero-remote"><span class="remote-dot"></span>フルリモート勤務実績あり / フルリモート勤務希望</div>
 
     <div class="hero-stats">
       <div class="hero-stat">
@@ -577,7 +595,7 @@ a { color: inherit; text-decoration: none; }
 <section class="section" id="results">
   <div class="section-label en fade-in">Results</div>
   <h2 class="section-title fade-in">数字で証明する実績</h2>
-  <p class="section-desc fade-in">SaaS開発チーム（約10名）において、QAエンジニアとして品質改善をリードした成果。</p>
+  <p class="section-desc fade-in">SaaS開発チーム（約10名・フルリモート環境）において、QAエンジニアとして品質改善をリードした成果。</p>
 
   <div class="results-grid">
     <div class="result-card">
@@ -873,6 +891,7 @@ a { color: inherit; text-decoration: none; }
   <div class="about-content">
     <div class="about-text">
       <p class="fade-in">工業高校卒業後、音楽活動でYAMAHAグランプリ受賞・ワンマンライブ450名動員を経験。2021年にエンジニアへ転身し、SaaS企業でQAエンジニアとして4年間従事。並行してサイバー大学でAI・データサイエンスを専攻（GPA 3.9）。</p>
+      <p class="fade-in">前職ではフルリモート環境で開発・テスト・品質改善を担当。チケット駆動の非同期コミュニケーションとドキュメントによる情報共有を徹底し、リモート下でも認識齟齬を防ぎながら成果を出す働き方を実践。今後もフルリモート環境で品質向上に貢献したいと考えている。</p>
       <p class="fade-in">「作る」と「守る」の両面からプロダクト品質に関わってきた経験が、他のQAエンジニアとの差別化ポイント。</p>
       <div class="about-timeline">
         <div class="about-timeline-item">
@@ -889,7 +908,7 @@ a { color: inherit; text-decoration: none; }
         </div>
         <div class="about-timeline-item">
           <span class="year en">2022</span>
-          <span class="desc">SaaS企業に入社 / 開発・QA（4年）</span>
+          <span class="desc">SaaS企業に入社 / フルリモートで開発・QA（4年）</span>
         </div>
         <div class="about-timeline-item">
           <span class="year en">2021</span>
@@ -979,7 +998,7 @@ function closeMobile() {
 
 // HERO STAGGER
 document.addEventListener('DOMContentLoaded', () => {
-  const els = document.querySelectorAll('.hero-tag, .hero-copy, .hero-sub-copy, .hero-stat, .hero-strengths');
+  const els = document.querySelectorAll('.hero-tag, .hero-copy, .hero-sub-copy, .hero-remote, .hero-stat, .hero-strengths');
   els.forEach((el, i) => {
     setTimeout(() => {
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
