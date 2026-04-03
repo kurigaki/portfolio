@@ -426,8 +426,9 @@ a { color: inherit; text-decoration: none; }
 }
 .contact-heading {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
   font-weight: 800; line-height: 1.1; margin-bottom: 1.2rem;
+  white-space: nowrap;
 }
 .contact-sub {
   font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 2rem;
@@ -444,20 +445,23 @@ a { color: inherit; text-decoration: none; }
 }
 .contact-email:hover::after { width: 100%; }
 .contact-icons {
-  display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;
+  display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem;
 }
 .contact-icons a {
-  width: 38px; height: 38px;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--border); border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  padding: 0.8rem 1.2rem; border: 1px solid var(--border); border-radius: 12px;
   transition: border-color 0.3s, transform 0.3s;
 }
 .contact-icons a:hover { border-color: var(--accent); transform: translateY(-2px); }
-.contact-icons svg {
-  width: 16px; height: 16px; stroke: var(--text-secondary);
-  fill: none; stroke-width: 1.5; transition: stroke 0.3s;
+.contact-icons .icon-img {
+  width: 64px; height: 64px; object-fit: contain;
+  border-radius: 4px; transition: opacity 0.3s;
 }
-.contact-icons a:hover svg { stroke: var(--accent); }
+.contact-icons a:hover .icon-img { opacity: 0.8; }
+.contact-icons .icon-label {
+  font-size: 0.7rem; color: var(--text-secondary); transition: color 0.3s;
+}
+.contact-icons a:hover .icon-label { color: var(--accent); }
 
 /* ===== FOOTER ===== */
 .footer {
@@ -829,6 +833,7 @@ a { color: inherit; text-decoration: none; }
       <div class="tech-items">
         <span>探索的テスト</span><span>テスト設計</span><span>不具合解析</span>
         <span class="en">Vitest</span><span class="en">Puppeteer</span>
+        <span class="en">Playwright</span>
       </div>
     </div>
     <div class="tech-category">
@@ -841,6 +846,7 @@ a { color: inherit; text-decoration: none; }
     <div class="tech-category">
       <div class="tech-cat-name en">Backend / Infra</div>
       <div class="tech-items">
+        <span class="en">Ruby</span><span class="en">Ruby on Rails</span>
         <span class="en">Perl</span><span class="en">PHP</span><span class="en">Python</span>
         <span class="en">MySQL</span><span class="en">Supabase</span>
         <span class="en">AWS</span><span class="en">Linux</span><span class="en">Docker</span>
@@ -851,6 +857,7 @@ a { color: inherit; text-decoration: none; }
       <div class="tech-items">
         <span class="en">AI Agent</span><span class="en">GAS</span>
         <span class="en">Git</span><span class="en">Backlog</span><span class="en">Growi</span>
+        <span class="en">Slack</span><span class="en">Discord</span><span class="en">GoogleChat</span>
       </div>
     </div>
   </div>
@@ -865,36 +872,44 @@ a { color: inherit; text-decoration: none; }
   <h2 class="section-title fade-in">経歴</h2>
   <div class="about-content">
     <div class="about-text">
-      <p class="fade-in">工業高校卒業後、音楽活動でYAMAHAグランプリ受賞・ワンマンライブ450名動員を経験。2021年にエンジニアへ転身し、SaaS企業でQAエンジニアとして4年間従事。並行してサイバー大学でAI・データサイエンスを専攻（GPA 3.9）。</p>
+      <p class="fade-in">工業高校卒業後、音楽活動でYAMAHAグランプリ受賞・ワンマンライブ450名動員を経験。2021年にエンジニアへ転身し、SaaS企業でQAエンジニアとして4年間従事。並行してサイバー大学でAIを専攻（GPA 3.9）。</p>
       <p class="fade-in">「作る」と「守る」の両面からプロダクト品質に関わってきた経験が、他のQAエンジニアとの差別化ポイント。</p>
       <div class="about-timeline">
         <div class="about-timeline-item">
-          <span class="year en">2012</span>
-          <span class="desc">芝浦シヤリング入社 / 音楽活動と並行</span>
-        </div>
-        <div class="about-timeline-item">
-          <span class="year en">2013</span>
-          <span class="desc">YAMAHA Music Revolution グランプリ受賞</span>
-        </div>
-        <div class="about-timeline-item">
-          <span class="year en">2021</span>
-          <span class="desc">テックキャンプ修了 / エンジニア転身</span>
-        </div>
-        <div class="about-timeline-item">
-          <span class="year en">2022</span>
-          <span class="desc">インターパーク入社 / SaaS開発・QA（4年）</span>
-        </div>
-        <div class="about-timeline-item">
-          <span class="year en">2023</span>
-          <span class="desc">サイバー大学入学 / AWS Cloud Practitioner取得</span>
+          <span class="year en">2026</span>
+          <span class="desc">サイバー大学卒業早期卒業見込み</span>
         </div>
         <div class="about-timeline-item">
           <span class="year en">2024</span>
           <span class="desc">基本情報技術者・情報セキュリティマネジメント取得</span>
         </div>
         <div class="about-timeline-item">
-          <span class="year en">2026</span>
-          <span class="desc">サイバー大学卒業見込み</span>
+          <span class="year en">2023</span>
+          <span class="desc">サイバー大学入学 / AWS Cloud Practitioner取得</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2022</span>
+          <span class="desc">インターパーク入社 / SaaS開発・QA（4年）</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2021</span>
+          <span class="desc">テックキャンプ修了 / エンジニア転身</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2014</span>
+          <span class="desc">YAMAHA Music Revolution オーディエンス賞受賞</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2014</span>
+          <span class="desc">島村楽器「HOT LINE」 エリアファイナル出場</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2013</span>
+          <span class="desc">YAMAHA Music Revolution グランプリ受賞</span>
+        </div>
+        <div class="about-timeline-item">
+          <span class="year en">2012</span>
+          <span class="desc">日立建機の下請け会社で正社員として働きながら並行して音楽活動</span>
         </div>
       </div>
     </div>
@@ -913,7 +928,7 @@ a { color: inherit; text-decoration: none; }
       <div class="about-certs" style="margin-top: 2rem;">
         <div class="about-certs-title fade-in">課外活動</div>
         <div class="cert-list">
-          <div class="cert-item" style="align-items: flex-start;"><span class="cert-year en" style="min-width: auto; color: var(--accent-warm);">01</span>ITコミュニティ最上位ランク到達（全体6名中の1人）</div>
+          <div class="cert-item" style="align-items: flex-start;"><span class="cert-year en" style="min-width: auto; color: var(--accent-warm);">01</span>大学公式コミュニティ最上位ランク到達（全体6名中の1人）</div>
           <div class="cert-item" style="align-items: flex-start;"><span class="cert-year en" style="min-width: auto; color: var(--accent-warm);">02</span>大学サークル（約30名）管理人 / Discord運用設計</div>
           <div class="cert-item" style="align-items: flex-start;"><span class="cert-year en" style="min-width: auto; color: var(--accent-warm);">03</span>音楽活動10年 / ワンマン450名・主催イベント600名動員</div>
         </div>
@@ -926,19 +941,22 @@ a { color: inherit; text-decoration: none; }
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <h2 class="contact-heading en fade-in">
-    <span>Let's Work</span><br><span>Together</span>
+    <span>Let's Work Together</span>
   </h2>
   <p class="contact-sub fade-in">お気軽にご連絡ください。</p>
   <a href="mailto:kenji.kurigaki@gmail.com" class="contact-email en fade-in">kenji.kurigaki@gmail.com</a>
   <div class="contact-icons fade-in">
     <a href="https://github.com/kurigaki" target="_blank" rel="noopener" aria-label="GitHub">
-      <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+      <img src="images/icon-github.png" alt="GitHub" class="icon-img">
+      <span class="icon-label en">GitHub</span>
     </a>
     <a href="https://www.credly.com/users/username.e9f9855a/badges#credly" target="_blank" rel="noopener" aria-label="Credly">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <img src="images/icon-credly.png" alt="Credly" class="icon-img">
+      <span class="icon-label en">Credly</span>
     </a>
-    <a href="https://wallet.openbadge.net/public/user/a674c84f-fbd7-460d-a47d-2c5d471a62d8" target="_blank" rel="noopener" aria-label="OpenBadge">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8 13l-2 9 6-3 6 3-2-9"/></svg>
+    <a href="https://wallet.openbadge.net/public/user/a674c84f-fbd7-460d-a47d-2c5d471a62d8" target="_blank" rel="noopener" aria-label="LeCoS">
+      <img src="images/icon-lecos.jpeg" alt="LeCoS" class="icon-img">
+      <span class="icon-label en">LeCoS</span>
     </a>
   </div>
 </section>
