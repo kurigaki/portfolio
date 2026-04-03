@@ -309,6 +309,15 @@ a { color: inherit; text-decoration: none; }
 .project-links a:hover { background: var(--accent-glow); }
 .project-links svg { width: 12px; height: 12px; }
 
+.project-image {
+  width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  background: var(--bg-main);
+}
+.project-image img {
+  width: 100%; height: 100%; object-fit: contain;
+  display: block;
+}
 .project-body { padding: 1rem 2rem 2rem; }
 .project-title {
   font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem;
@@ -671,6 +680,9 @@ a { color: inherit; text-decoration: none; }
         </a>
       </div>
     </div>
+    <div class="project-image">
+      <img src="images/word-dungeon.png" alt="WORD DUNGEON - 英語学習ダンジョンゲーム" loading="lazy">
+    </div>
     <div class="project-body">
       <h3 class="project-title">WORD DUNGEON</h3>
       <p class="project-subtitle">英語学習アプリ / Next.js + TypeScript + Supabase</p>
@@ -705,6 +717,9 @@ a { color: inherit; text-decoration: none; }
           <span class="en">GitHub</span>
         </a>
       </div>
+    </div>
+    <div class="project-image">
+      <img src="images/ai-multi-agent.png" alt="AI Multi-Agent Review System" loading="lazy">
     </div>
     <div class="project-body">
       <h3 class="project-title">AI Multi-Agent Review System</h3>
@@ -741,6 +756,9 @@ a { color: inherit; text-decoration: none; }
         </a>
       </div>
     </div>
+    <div class="project-image">
+      <img src="images/gas-news-bot.png" alt="GAS News Bot - Discord自動配信" loading="lazy">
+    </div>
     <div class="project-body">
       <h3 class="project-title">GAS News Bot</h3>
       <p class="project-subtitle">ニュース自動配信Bot / Google Apps Script + Discord API</p>
@@ -759,6 +777,39 @@ a { color: inherit; text-decoration: none; }
         <div class="project-section">
           <div class="project-section-label">結果</div>
           <p><span class="highlight">情報共有の継続性と即時性が向上。</span>コミュニティのアクティブ率向上と運用負荷の削減を同時に達成。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 4 -->
+  <div class="project-card">
+    <div class="project-header">
+      <div class="project-num en">PROJECT 04</div>
+      <div class="project-links">
+      </div>
+    </div>
+    <div class="project-image">
+      <img src="images/clinic-website.png" alt="クリニックLP - 内科・糖尿病内科" loading="lazy">
+    </div>
+    <div class="project-body">
+      <h3 class="project-title">Clinic Website</h3>
+      <p class="project-subtitle">クリニックLP制作 / HTML + CSS</p>
+      <div class="project-tech">
+        <span class="en">HTML</span><span class="en">CSS</span><span class="en">Responsive Design</span>
+      </div>
+      <div class="project-sections">
+        <div class="project-section">
+          <div class="project-section-label">課題</div>
+          <p>内科・糖尿病内科クリニックの<span class="highlight">集患とネット予約導線の最適化</span>が必要。患者が安心して来院できる情報設計が求められた。</p>
+        </div>
+        <div class="project-section">
+          <div class="project-section-label">工夫</div>
+          <p><span class="highlight">患者心理に寄り添ったコピーライティング</span>と、予約・電話相談への明確なCTA設計。レスポンシブ対応でスマホからのアクセスにも最適化。</p>
+        </div>
+        <div class="project-section">
+          <div class="project-section-label">結果</div>
+          <p><span class="highlight">直感的な導線設計により予約アクションへの到達率を向上。</span>安心感を重視したデザインで、患者の来院ハードルを低減。</p>
         </div>
       </div>
     </div>
