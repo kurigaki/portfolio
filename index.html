@@ -495,6 +495,44 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.7rem; color: var(--text-secondary); letter-spacing: 0.06em;
 }
 
+/* ===== VIDEO SHOWCASE ===== */
+.video-showcase {
+  padding: 1.5rem 2rem 2rem;
+  border-top: 1px solid var(--border);
+}
+.video-showcase-title {
+  font-size: 0.7rem; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+.video-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+}
+.video-item {
+  border-radius: 8px; overflow: hidden;
+  background: var(--bg-main); border: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+.video-item:hover { border-color: var(--border-accent); }
+.video-item video {
+  width: 100%; display: block;
+}
+.video-caption {
+  padding: 0.8rem 1rem;
+}
+.video-caption-title {
+  font-size: 0.85rem; font-weight: 700;
+  color: var(--text-primary); margin-bottom: 0.3rem;
+}
+.video-caption-desc {
+  font-size: 0.72rem; color: var(--text-secondary); line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .video-grid { grid-template-columns: 1fr; }
+}
+
 /* ===== ANIMATIONS ===== */
 .fade-in {
   opacity: 0; transform: translateY(25px);
@@ -724,6 +762,29 @@ a { color: inherit; text-decoration: none; }
         <div class="project-section">
           <div class="project-section-label">結果</div>
           <p><span class="highlight">テスト自動化により主要機能の品質担保を実現。</span>コンポーネント設計により保守性を向上。要件定義からテストまで一貫した開発プロセスを個人で完遂。</p>
+        </div>
+      </div>
+    </div>
+    <div class="video-showcase">
+      <div class="video-showcase-title">Demo</div>
+      <div class="video-grid">
+        <div class="video-item">
+          <video autoplay loop muted playsinline>
+            <source src="images/dungeon.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <div class="video-caption-title">英単語クイズで攻撃するRPG</div>
+            <div class="video-caption-desc">単語選択 → 攻撃 → 敵撃破</div>
+          </div>
+        </div>
+        <div class="video-item">
+          <video autoplay loop muted playsinline>
+            <source src="images/dungeon2.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <div class="video-caption-title">探索・罠・アイテム要素</div>
+            <div class="video-caption-desc">移動、罠、アイテム取得など</div>
+          </div>
         </div>
       </div>
     </div>
