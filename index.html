@@ -371,6 +371,53 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-primary); font-weight: 500;
 }
 
+/* ===== ACHIEVEMENTS ===== */
+.achievements-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+}
+.achievement-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 2rem;
+  opacity: 0; transform: translateY(30px);
+  transition: border-color 0.3s, transform 0.3s, opacity 0.7s ease;
+}
+.achievement-card:hover {
+  border-color: var(--border-accent); transform: translateY(-2px);
+}
+.achievement-card.visible { opacity: 1; transform: translateY(0); }
+.achievement-card.visible:hover { transform: translateY(-2px); }
+.achievement-header {
+  display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem;
+}
+.achievement-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--accent-glow);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.achievement-icon svg {
+  width: 18px; height: 18px; stroke: var(--accent);
+  fill: none; stroke-width: 1.5;
+}
+.achievement-name {
+  font-size: 1rem; font-weight: 700;
+}
+.achievement-stats {
+  display: flex; gap: 1.5rem; margin-bottom: 1rem;
+}
+.achievement-stat-num {
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: 1.5rem; color: var(--accent); line-height: 1.1;
+}
+.achievement-stat-label {
+  font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.15rem;
+}
+.achievement-desc {
+  font-size: 0.82rem; color: var(--text-secondary); line-height: 1.7;
+}
+@media (max-width: 768px) {
+  .achievements-grid { grid-template-columns: 1fr; }
+}
+
 /* ===== TECH STACK ===== */
 .tech-categories {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -901,6 +948,57 @@ a { color: inherit; text-decoration: none; }
 </div>
 
 <!-- ================================================
+     SELECTED ACHIEVEMENTS
+     ================================================ -->
+<section class="section" id="achievements">
+  <div class="section-label en fade-in">Selected Achievements</div>
+  <h2 class="section-title fade-in">コミュニティ実績</h2>
+  <p class="section-desc fade-in">開発以外の場でも、継続的な発信と仕組みづくりで成果を出す。</p>
+
+  <div class="achievements-grid">
+    <div class="achievement-card">
+      <div class="achievement-header">
+        <div class="achievement-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="achievement-name">commmune（技術コミュニティ）</div>
+      </div>
+      <div class="achievement-stats">
+        <div>
+          <div class="achievement-stat-num en">BLACK</div>
+          <div class="achievement-stat-label">最上位ランク到達</div>
+        </div>
+        <div>
+          <div class="achievement-stat-num en">6<span style="font-size:0.8rem;font-weight:600;">名のみ</span></div>
+          <div class="achievement-stat-label">全体での到達者数</div>
+        </div>
+      </div>
+      <p class="achievement-desc">技術発信および課題解決のアウトプットを継続し、ナレッジ蓄積とコミュニティ活性化に貢献。10,000ポイントに到達。</p>
+    </div>
+
+    <div class="achievement-card">
+      <div class="achievement-header">
+        <div class="achievement-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="achievement-name">コミュニティ運営（Discord）</div>
+      </div>
+      <div class="achievement-stats">
+        <div>
+          <div class="achievement-stat-num en">~30<span style="font-size:0.8rem;font-weight:600;">名</span></div>
+          <div class="achievement-stat-label">サークル規模</div>
+        </div>
+        <div>
+          <div class="achievement-stat-num en">5<span style="font-size:0.8rem;font-weight:600;">種</span></div>
+          <div class="achievement-stat-label">自動配信ニュース</div>
+        </div>
+      </div>
+      <p class="achievement-desc">大学サークルの管理人としてDiscordのチャンネル設計・情報共有ルールを整備。ニュース配信Bot（GAS）を開発し、情報共有の自動化と参加率向上を実現。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
      TECH STACK - 簡潔に
      ================================================ -->
 <section class="section" id="tech">
@@ -1079,7 +1177,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.fade-in, .result-card, .strength-card, .project-card, .tech-category, .about-timeline-item, .cert-item').forEach(el => {
+document.querySelectorAll('.fade-in, .result-card, .strength-card, .project-card, .achievement-card, .tech-category, .about-timeline-item, .cert-item').forEach(el => {
   observer.observe(el);
 });
 
