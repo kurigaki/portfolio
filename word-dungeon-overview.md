@@ -14,7 +14,7 @@
 中学・高校・英検・TOEIC・日常会話など複数コース、**約16,300語** を収録しています。
 
 **公開URL:** https://kurigaki-english-learning-app.vercel.app/  
-**ソースコード:** https://github.com/kurigaki/kurigaki-english-learning-app
+**ソースコード:** https://github.com/kurigaki/word-spell-master
 
 ---
 
@@ -23,7 +23,7 @@
 プロジェクトの中身を「何がどこにあるか」で整理すると、次のようになっています。
 
 ```
-kurigaki-english-learning-app/
+WordSpellMaster/
 │
 ├── src/                    ← アプリ本体のソースコード
 │   ├── app/                ← 画面（ページ）の定義（全34画面）
